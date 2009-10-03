@@ -7,5 +7,6 @@
 /share
 /etc
 /man
+/git
 !/Library/
 !/bin/brew
