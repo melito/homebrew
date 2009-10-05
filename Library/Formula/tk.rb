@@ -3,10 +3,9 @@ require 'brewkit'
 class Tk <Formula
   url 'cvs://:pserver:anonymous@tktoolkit.cvs.sourceforge.net:/cvsroot/tktoolkit:tk'
   homepage 'http://www.tcl.tk/'
-  md5 ''
   version '8.6'
 
-# depends_on 'cmake'
+  depends_on 'tcl'
 
   def install
     system "./unix/configure", "--prefix=#{prefix}", 
