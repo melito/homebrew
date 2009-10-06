@@ -24,6 +24,7 @@
 class AbstractDownloadStrategy
   def initialize url, name, version
     @url=url
+    @version=version
     @unique_token="#{name}-#{version}" unless name.to_s.empty? or name == '__UNKNOWN__'
   end
 end
@@ -149,12 +150,15 @@ class CVSDownloadStrategy <AbstractDownloadStrategy
     # cvs -d :pserver:anoncvs@www.gccxml.org:/cvsroot/GCC_XML login
     # cvs -d :pserver:anoncvs@www.gccxml.org:/cvsroot/GCC_XML co gccxml
     mod, url = split_url(@url)
+    version = @version ||= "HEAD"
 
     unless @co.exist?
+      
       Dir.chdir HOMEBREW_CACHE do
         safe_system '/usr/bin/cvs', '-d', url, 'login'
-        safe_system '/usr/bin/cvs', '-d', url, 'checkout', '-d', @unique_token, mod
+        safe_system '/usr/bin/cvs', '-d', url, 'checkout', '-r', version, '-d', @unique_token, mod
       end
+      
     else
       # TODO cvs up?
       puts "Repository already checked out"
