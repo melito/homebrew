@@ -8,7 +8,7 @@ class Tcl <Formula
   def install
     FileUtils.mkdir("#{HOMEBREW_CACHE}/tcl") rescue puts "tcl build directory already exists"    
     FileUtils.ln_sf("#{HOMEBREW_CACHE}/tcl-core-8-5-7", "#{HOMEBREW_CACHE}/tcl/tcl8.5.7")
-    FileUtils.mkdir("#{HOMEBREW_CACHE}/tcl/tcl8.5.7/build")
+    #FileUtils.mkdir("#{HOMEBREW_CACHE}/tcl/tcl8.5.7/build")
         
     Dir.chdir("#{HOMEBREW_CACHE}/tcl/tcl8.5.7") do
       system "./unix/configure",  "--prefix=#{prefix}", 
@@ -19,6 +19,7 @@ class Tcl <Formula
                                       "--enable-symbols"
 
       system "make install"
+      system "make install-private-headers"
     end
     
   end
