@@ -2,9 +2,10 @@ require 'formula'
 
 class Tokyotyrant <Formula
   # For some reason the latest release of TT (1.1.36) wouldn't compile against the existing TC formula (1.4.33)
-  url 'http://1978th.net/tokyotyrant/pastpkg/tokyotyrant-1.0.1.tar.gz'
+  # Also it appears the Ruby (Rufus) bindings will only work with up to 1.1.33
+  url 'http://1978th.net/tokyotyrant/tokyotyrant-1.1.33.tar.gz'
   homepage 'http://1978th.net/tokyotyrant/'
-  md5 'd3d8a9847e2d20ac49129362d55078cf'
+  md5 '48b153ed85b5f7057eedd3ce304eca34'
 
  depends_on 'tokyo-cabinet'
  depends_on 'lua'
